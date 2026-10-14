@@ -1,13 +1,12 @@
-
 "use client";
 
 import { useState } from "react";
+import ProjectsSection from "@/components/projects/ProjectsSection";
 
 type Language = "pt" | "en";
 type Theme = "dark" | "light";
 
-const WHATSAPP_URL =
-  "https://wa.me/5521971620952";
+const WHATSAPP_URL = "https://wa.me/5521971620952";
 
 const content = {
   pt: {
@@ -20,10 +19,6 @@ const content = {
     contact: "Contato",
     viewProjects: "Explorar projetos",
     available: "Construindo soluções web",
-    sectionLabel: "PORTFÓLIO",
-    featuredTitle: "Projetos em destaque",
-    featuredDescription:
-      "Aplicações que demonstram minhas habilidades em desenvolvimento frontend e backend.",
     aboutTitle: "Desenvolvimento com propósito.",
     aboutDescription:
       "Sou desenvolvedor web Full Stack, com experiência profissional em interfaces responsivas e experiência prática na construção de APIs REST, autenticação, bancos de dados relacionais e aplicações escaláveis.",
@@ -44,50 +39,6 @@ const content = {
       "Estou aberto a oportunidades profissionais, projetos interessantes e conexões na área de tecnologia.",
     contactButton: "Falar pelo WhatsApp",
     footer: "Desenvolvido com Next.js e TypeScript.",
-    code: "Código",
-    planned: "Planejado",
-    projectsData: [
-      {
-        number: "01",
-        title: "FinanceFlow",
-        category: "FULL STACK · FINTECH",
-        description:
-          "Aplicação de controle financeiro com transações, categorias e dashboard analítico.",
-        symbol: "↗",
-      },
-      {
-        number: "02",
-        title: "TaskFlow",
-        category: "FULL STACK · PRODUCTIVITY",
-        description:
-          "Gerenciamento de projetos e tarefas com autenticação e controle de permissões.",
-        symbol: "▦",
-      },
-      {
-        number: "03",
-        title: "WorkoutHub",
-        category: "FULL STACK · FITNESS",
-        description:
-          "Biblioteca de exercícios e criação de treinos personalizados.",
-        symbol: "◈",
-      },
-      {
-        number: "04",
-        title: "ClientDesk",
-        category: "FULL STACK · CRM",
-        description:
-          "Gestão de clientes, empresas, contatos e oportunidades comerciais.",
-        symbol: "◎",
-      },
-      {
-        number: "05",
-        title: "API Lab",
-        category: "BACKEND · REST API",
-        description:
-          "API REST com validação, autenticação, documentação e testes.",
-        symbol: "{ }",
-      },
-    ],
   },
   en: {
     role: "Full Stack Web Developer",
@@ -99,10 +50,6 @@ const content = {
     contact: "Contact",
     viewProjects: "Explore projects",
     available: "Building web solutions",
-    sectionLabel: "PORTFOLIO",
-    featuredTitle: "Featured projects",
-    featuredDescription:
-      "Applications showcasing my frontend and backend development skills.",
     aboutTitle: "Development with purpose.",
     aboutDescription:
       "I'm a Full Stack Web Developer with professional experience building responsive interfaces and hands-on experience developing REST APIs, authentication systems, relational databases, and scalable applications.",
@@ -122,50 +69,6 @@ const content = {
       "I'm open to professional opportunities, interesting projects, and connections in the tech industry.",
     contactButton: "Chat on WhatsApp",
     footer: "Built with Next.js and TypeScript.",
-    code: "Code",
-    planned: "Planned",
-    projectsData: [
-      {
-        number: "01",
-        title: "FinanceFlow",
-        category: "FULL STACK · FINTECH",
-        description:
-          "Personal finance application featuring transactions, categories, and analytics.",
-        symbol: "↗",
-      },
-      {
-        number: "02",
-        title: "TaskFlow",
-        category: "FULL STACK · PRODUCTIVITY",
-        description:
-          "Project and task management with authentication and access control.",
-        symbol: "▦",
-      },
-      {
-        number: "03",
-        title: "WorkoutHub",
-        category: "FULL STACK · FITNESS",
-        description:
-          "Exercise library and personalized workout planning.",
-        symbol: "◈",
-      },
-      {
-        number: "04",
-        title: "ClientDesk",
-        category: "FULL STACK · CRM",
-        description:
-          "Management of clients, companies, contacts, and sales opportunities.",
-        symbol: "◎",
-      },
-      {
-        number: "05",
-        title: "API Lab",
-        category: "BACKEND · REST API",
-        description:
-          "REST API featuring validation, authentication, documentation, and tests.",
-        symbol: "{ }",
-      },
-    ],
   },
 };
 
@@ -176,12 +79,18 @@ const technologies = [
   "TypeScript",
   "React",
   "Next.js",
+  "Tailwind CSS",
   "Node.js",
   "NestJS",
+  "REST APIs",
+  "JWT",
   "PostgreSQL",
-  "Prisma",
+  "Prisma ORM",
   "Docker",
   "Git",
+  "GitHub",
+  "Jest",
+  "ESLint",
 ];
 
 export default function Home() {
@@ -264,7 +173,7 @@ export default function Home() {
               className="button button-secondary"
               href={WHATSAPP_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               {t.contact}
             </a>
@@ -274,7 +183,7 @@ export default function Home() {
             <a
               href="https://github.com/dev-ley"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               GitHub ↗
             </a>
@@ -282,7 +191,7 @@ export default function Home() {
             <a
               href="https://linkedin.com/in/wr-dev/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               LinkedIn ↗
             </a>
@@ -354,51 +263,14 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="projects-section section container" id="projects">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">{t.sectionLabel} / 01</p>
-            <h2>{t.featuredTitle}</h2>
-            <p className="section-description">{t.featuredDescription}</p>
-          </div>
-
-          <span className="section-count">05 PROJECTS</span>
-        </div>
-
-        <div className="projects-grid">
-          {t.projectsData.map((project) => (
-            <article className="project-card" key={project.number}>
-              <div className="project-card-top">
-                <span className="project-number">{project.number}</span>
-                <span className="project-status">{t.planned}</span>
-              </div>
-
-              <div className="project-graphic" aria-hidden="true">
-                <span className="graphic-symbol">{project.symbol}</span>
-                <span className="graphic-lines" />
-              </div>
-
-              <p className="project-category">{project.category}</p>
-
-              <h3>{project.title}</h3>
-
-              <p className="project-description">{project.description}</p>
-
-              <div className="project-links">
-                <span>
-                  {t.code} — {t.planned}
-                </span>
-                <span aria-hidden="true">↗</span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <ProjectsSection language={language} />
 
       <section className="about-section section" id="about">
         <div className="container about-grid">
           <div>
-            <p className="eyebrow">ABOUT / 02</p>
+            <p className="eyebrow">
+              {language === "pt" ? "SOBRE / 02" : "ABOUT / 02"}
+            </p>
 
             <h2>{t.aboutTitle}</h2>
 
@@ -452,7 +324,9 @@ export default function Home() {
       </section>
 
       <section className="contact-section section container" id="contact">
-        <p className="eyebrow">CONTACT / 03</p>
+        <p className="eyebrow">
+          {language === "pt" ? "CONTATO / 03" : "CONTACT / 03"}
+        </p>
 
         <h2>{t.contactTitle}</h2>
 
@@ -462,7 +336,7 @@ export default function Home() {
           className="button button-primary"
           href={WHATSAPP_URL}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
           {t.contactButton} <span aria-hidden="true">↗</span>
         </a>
@@ -471,7 +345,7 @@ export default function Home() {
           <a
             href={WHATSAPP_URL}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             WhatsApp ↗
           </a>
@@ -479,7 +353,7 @@ export default function Home() {
           <a
             href="https://github.com/dev-ley"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             GitHub ↗
           </a>
@@ -487,7 +361,7 @@ export default function Home() {
           <a
             href="https://linkedin.com/in/wr-dev/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             LinkedIn ↗
           </a>
